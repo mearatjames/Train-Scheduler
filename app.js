@@ -31,7 +31,6 @@
           time: document.getElementById("trainTime").value,
           frequency: frequency,
         })
-        updateInfo();
         document.getElementById("trainForm").reset()
     }
   }
@@ -41,10 +40,15 @@ const train = data.val()
 let x = moment(train.time, "HH:mm")
 let y = moment()
 let difference = y.diff(x, "minutes")
-console.log(difference)
 let minutesAway = train.frequency - (difference%train.frequency)
-console.log(minutesAway)
 let nextTrain = moment().add(minutesAway, 'minutes').format("hh:mm A");
+
+if (difference < 0) {
+    nextTrain = moment(train.time, "HH:mm").format("hh:mm A")
+    minutesAway = Math.abs(difference)
+} 
+console.log(difference)
+console.log(minutesAway)
 let trainElement = document.createElement('tr')
     trainElement.innerHTML = `
         <td>${train.name}</td>
