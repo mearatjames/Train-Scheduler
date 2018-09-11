@@ -15,18 +15,29 @@
 //Add Train
   function addTrain(e) {
     e.preventDefault();
-    userRef.push({
-      name: document.getElementById("trainName").value,
-      destination: document.getElementById("destination").value,
-      time: document.getElementById("trainTime").value,
-      frequency: document.getElementById("frequency").value,
-    })
+
+//Time Validation
+    let time = document.getElementById("trainTime").value
+    let frequency = Number(document.getElementById("frequency").value)
+    const military = /^\s*([01]?\d|2[0-3]):[0-5]\d\s*$/i;
+    if (!time.match(military) || frequency < 0 || !Number.isInteger(frequency)) {
+        document.getElementById("message").innerHTML = "Invalid Input!"
+        console.log("Error");
+        return false;
+    } else {
+        userRef.push({
+          name: document.getElementById("trainName").value,
+          destination: document.getElementById("destination").value,
+          time: document.getElementById("trainTime").value,
+          frequency: frequency,
+        })
+        document.getElementById("trainForm").reset()
+    }
   }
 
 userRef.on('child_added', data => {
 const train = data.val()
-let x = new moment(train.time)
-console.log(x)
+// let x = new moment(train.time)
 // let y = new moment()
 // let duration = y.diff(x, "months")
 let trainElement = document.createElement('tr')

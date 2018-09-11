@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center shadow-sm">
         <a class="navbar-brand" href="#">Train Scheduler</a>
     </nav>
     <main class="mt-5">
@@ -38,7 +38,7 @@
                     <h2>Add Train</h2>
                 </div>
                 <div class="row">
-                    <form class="mb-3 container-fluid">
+                    <form id="trainForm" class="mb-3 container-fluid">
                         <div class="form-group">
                             <label for="trainname">Train Name</label>
                             <input type="text" class="form-control" id="trainName">
@@ -53,9 +53,10 @@
                         </div>
                         <div class="form-group">
                             <label for="frequency">Frequency (min)</label>
-                            <input type="text" class="form-control" id="frequency">
+                            <input type="number" min="1" max="21600" class="form-control" id="frequency">
                         </div>
-                        <button id="addTrain" type="submit" class="btn btn-primary">Submit</button>
+                        <div id="message" class="mb-2"></div>
+                        <button id="addTrain" type="submit" class="btn btn-outline-success">Submit</button>
                     </form>
                 </div>
     </main>
