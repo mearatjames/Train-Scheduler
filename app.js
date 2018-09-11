@@ -31,22 +31,27 @@
           time: document.getElementById("trainTime").value,
           frequency: frequency,
         })
+        updateInfo();
         document.getElementById("trainForm").reset()
     }
   }
 
 userRef.on('child_added', data => {
 const train = data.val()
-// let x = new moment(train.time)
-// let y = new moment()
-// let duration = y.diff(x, "months")
+let x = moment(train.time, "HH:mm")
+let y = moment()
+let difference = y.diff(x, "minutes")
+console.log(difference)
+let minutesAway = train.frequency - (difference%train.frequency)
+console.log(minutesAway)
+let nextTrain = moment().add(minutesAway, 'minutes').format("hh:mm A");
 let trainElement = document.createElement('tr')
     trainElement.innerHTML = `
         <td>${train.name}</td>
         <td>${train.destination}</td>
         <td>${train.frequency}</td>
-        <td></td>
-        <td></td>
+        <td>${nextTrain}</td>
+        <td>${minutesAway}</td>
     `
     document.querySelector('#trainList').appendChild(trainElement)
 })
