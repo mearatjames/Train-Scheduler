@@ -5,3 +5,11 @@ nav a {
 #message {
     color: brown;
 }
+
+a i {
+    color: black;
+}
+
+.delete {
+    visibility: hidden;
+}
