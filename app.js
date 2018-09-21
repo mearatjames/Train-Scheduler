@@ -96,6 +96,10 @@ function updateData(doneIcon) {
     doneIcon.innerHTML =`
     <a href="#"><i class="material-icons edit">edit</i></a>
     `
+    let deleteArr = document.querySelectorAll('.delete')
+    deleteArr.forEach(function(el){
+        el.style.visibility = "hidden"
+    })
 }
 
 //EventListener
