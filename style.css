@@ -1,0 +1,15 @@
+nav a {
+    font-size: 3rem !important;
+}
+
+#message {
+    color: brown;
+}
+
+a i {
+    color: black;
+}
+
+.delete {
+    visibility: hidden;
+}
